@@ -1,0 +1,10 @@
+<%= render 'shared/flash_messages' %>
+<br/>
+<div class="block">
+  <h2>Enter a URL to be shortened!</h2>
+
+  <%= form_for TinyUrl.new, url: tiny_urls_path, method: :post do |f| %>
+    <%= f.text_field :original_url, value: params[:original_url] || '' %>
+    <%= f.submit 'GO' %>
+  <% end %>
+</div>
