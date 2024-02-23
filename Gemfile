@@ -69,6 +69,10 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+configure :production do
+  require 'newrelic_rpm'
+end
+
 gem 'devise', '~> 4.9'
 
 gem 'securerandom', '~> 0.3.1'
