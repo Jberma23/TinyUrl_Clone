@@ -88,11 +88,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = {
-    host: 'https://hidden-basin-60096-0984c0dae999.herokuapp.com',
-    protocol: 'https',
-  }
-
+  config.action_mailer.delivery_method = :cloudmailin
+  config.action_mailer.default_url_options = { host: 'cloudmailin.com' }
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
