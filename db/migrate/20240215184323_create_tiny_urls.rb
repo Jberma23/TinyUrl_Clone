@@ -3,6 +3,7 @@ class CreateTinyUrls < ActiveRecord::Migration[7.1]
     create_table :tiny_urls do |t|
       t.string :new_url
       t.text :original_url
+      t.belongs_to :user
 
       t.timestamps
     end

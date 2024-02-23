@@ -1,10 +1,102 @@
-<%= render 'shared/flash_messages' %>
-<br/>
-<div class="block">
-  <h2>Enter a URL to be shortened!</h2>
+<div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+  <div class="mx-auto max-w-2xl sm:text-center">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      URL Shrinker
+    </h2>
+    <p class="mt-2 text-lg leading-8 text-gray-600">
+      Have a super long url you want to shorten? Enter it below
+    </p>
+  </div>
+  <div class="mx-auto mt-5 max-w-lg space-y-16">
+    <div class="flex items-center justify-center gap-x-6">
+      <div class="">
+        <%= form_for TinyUrl.new, url: tiny_urls_path, method: :post do |f| %>
+          <%=
+            f.label :original_url,
+                    'Enter a URL to be shortened!',
+                    class:
+                      'block text-center text-sm font-medium leading-6 text-gray-900'
+          %>
+          <div class="mt-2">
+            <%=
+              f.text_field :original_url,
+                           autofocus: true,
+                           autocomplete: 'off',
+                           placeholder:
+                             'https://www.google.com/.../..../.../....',
+                           class:
+                             'block w-full  min-w-[250px] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            %>
+          </div>
+          <div class="py-4 flex tems-center justify-center">
+            <%=
+              f.submit 'Shrink',
+                       class:
+                         'flex w-1/2 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-  <%= form_for TinyUrl.new, url: tiny_urls_path, method: :post do |f| %>
-    <%= f.text_field :original_url, value: params[:original_url] || '' %>
-    <%= f.submit 'GO' %>
-  <% end %>
+  <div class="mx-auto mt-20 max-w-full min-w-fit sm:text-center mb-5">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      Your URLs
+    </h2>
+    <div class="px-4 sm:px-6 lg:px-8">
+      <div class="mt-8 flow-root">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div
+            class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
+          >
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead>
+                <tr>
+                  <th
+                    scope="col"
+                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+                  >
+                    Original Url
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  >
+                    New Url
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <% if @urls %>
+                    <% @urls.each do |url| %>
+                      <td
+                        class="whitespace-nowrap  text-left py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 "
+                      >
+                        <%=
+                          link_to url.original_url,
+                                  url.original_url,
+                                  class: 'text-indigo-600 hover:text-indigo-900'
+                        %>
+                      </td>
+                      <td
+                        class="whitespace-nowrap  text-left py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 "
+                      >
+                        <%=
+                          link_to url.new_url,
+                                  url.new_url,
+                                  class: 'text-indigo-600 hover:text-indigo-900'
+                        %>
+                      </td>
+                    <% end %>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

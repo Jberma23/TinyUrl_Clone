@@ -14,9 +14,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_170353) do
   create_table "tiny_urls", force: :cascade do |t|
     t.string "new_url"
     t.text "original_url"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["new_url"], name: "index_tiny_urls_on_new_url", unique: true
+    t.index ["user_id"], name: "index_tiny_urls_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

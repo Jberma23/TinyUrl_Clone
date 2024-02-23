@@ -2,23 +2,28 @@
 <html>
   <head>
     <title>TeenyUrl</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%=
+      stylesheet_link_tag 'tailwind', 'inter-font', 'data-turbo-track': 'reload'
+    %>
+    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <main class="">
-    <div class="block m-2">
-      <%= render "layouts/header" %>
-    </div>
-    <div class="block">
-      <%= yield %>
-    </div>
+      <div class="block m-2">
+        <%= render 'layouts/header' %>
+        <div class="mt-5 mb-5">
+          <%= render 'shared/flash_messages' %>
+        </div>
+      </div>
+      <div class="block">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>
