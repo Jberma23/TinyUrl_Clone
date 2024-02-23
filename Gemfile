@@ -69,7 +69,7 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-configure :production do
+group :production do
   require 'newrelic_rpm'
 end
 
