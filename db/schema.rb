@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_02_19_170353) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tiny_urls", force: :cascade do |t|
     t.string "new_url"
     t.text "original_url"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["new_url"], name: "index_tiny_urls_on_new_url", unique: true
@@ -35,13 +38,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_170353) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "visitors", force: :cascade do |t|
-    t.string "ip"
-    t.integer "tiny_url_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tiny_url_id"], name: "index_visitors_on_tiny_url_id"
-  end
-
-  add_foreign_key "visitors", "tiny_urls"
 end

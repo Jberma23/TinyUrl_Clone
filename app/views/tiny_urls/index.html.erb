@@ -84,8 +84,8 @@
                         class="whitespace-nowrap  text-left py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 "
                       >
                         <%=
-                          link_to url.new_url,
-                                  url.new_url,
+                          link_to request.original_url + url.new_url,
+                                  request.original_url + url.new_url,
                                   class: 'text-indigo-600 hover:text-indigo-900'
                         %>
                       </td>
